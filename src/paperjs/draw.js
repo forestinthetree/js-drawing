@@ -1,7 +1,8 @@
-import poseToBody from "../drawing/pose-to-body.js";
+/*global paper:true */
+import poseToBody from "../drawing/pose-to-body";
 
-import poseExample from "../data/poseExample.js";
-import poseExample2 from "../data/poseExample2.js";
+import poseExample from "../data/poseExample";
+import poseExample2 from "../data/poseExample2";
 
 const init = ({ canvas, image }) => {
   const canvasSize = {
@@ -85,6 +86,9 @@ const initBody = ({ name: bodyName, body }) => {
 document.addEventListener("DOMContentLoaded", function () {
   const canvas = document.querySelector("#paperCanvas");
 
+  if (!canvas) {
+    return;
+  }
   init({ canvas, image: poseExample.image });
   initBody({
     name: "body1",
