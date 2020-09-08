@@ -30,22 +30,31 @@ const createBody = ({ app, body }) => {
   });
 };
 
-document.addEventListener("DOMContentLoaded", function () {
+const init = ({ image }) => {
+  const { width, height } = image;
+
   const app = new Application({
-    width: 256,
-    height: 256,
+    width,
+    height,
     antialias: true,
     transparent: false,
     autoDensity: true,
     resolution: window.devicePixelRatio,
   });
-
-  // Make full screen
   app.renderer.view.style.position = "absolute";
   app.renderer.view.style.display = "block";
-  app.renderer.resize(window.innerWidth, window.innerHeight);
+
+  // Make full screen
+  // app.renderer.resize(window.innerWidth, window.innerHeight);
+
+  // Add canvas to page
   document.body.appendChild(app.view);
 
+  return app;
+};
+
+document.addEventListener("DOMContentLoaded", function () {
+  const app = init({ image: poseExample.image });
   createBody({
     app,
     body: poseToBody({
