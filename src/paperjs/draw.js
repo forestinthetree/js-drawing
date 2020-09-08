@@ -41,13 +41,16 @@ const createBody = ({ body }) => {
   });
 };
 
-const init = ({ canvas, image }) => {
-  const canvasSize = {
-    x: image.width,
-    y: image.height,
-  };
+const init = ({ image }) => {
+  const { width, height } = image;
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  canvas.style["background-color"] = "black";
 
-  canvas.style = `width: ${canvasSize.x}px; height: ${canvasSize.y}px; background-color: black;`;
+  // Add canvas to page
+  document.body.appendChild(canvas);
+
   paper.setup(canvas);
 };
 
@@ -61,12 +64,7 @@ const initBody = ({ name: bodyName, body }) => {
 };
 
 document.addEventListener("DOMContentLoaded", function () {
-  const canvas = document.querySelector("#paperCanvas");
-
-  if (!canvas) {
-    return;
-  }
-  init({ canvas, image: poseExample.image });
+  init({ image: poseExample.image });
   initBody({
     name: "body1",
     body: poseToBody({ pose: poseExample.poses[0] }),
