@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
     antialias: true,
     transparent: false,
     autoDensity: true,
-    resolution: 2,
+    resolution: window.devicePixelRatio,
   });
 
   // Make full screen
