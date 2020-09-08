@@ -1,11 +1,15 @@
 # Canvas library comparison
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/07155b67-c06d-48b0-9408-eac9a0310929/deploy-status)](https://app.netlify.com/sites/canvas-lib-comparison/deploys)
+
 An exploration of different canvas libraries.
 
 The comparison contains:
 
 - [Paper.js](http://paperjs.org/)
 - [PixiJS](https://www.pixijs.com/)
+
+Deployed to https://canvas-lib-comparison.netlify.app/
 
 ## Development
 
