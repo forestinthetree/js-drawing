@@ -6,7 +6,7 @@ import { BODY_PART_POINTS } from "../drawing/constants";
 import poseExample from "../data/poseExample";
 import poseExample2 from "../data/poseExample2";
 
-const { Graphics, Application, Point } = PIXI;
+const { Graphics, Application, Point, Text, TextStyle } = PIXI;
 
 const createBodyPart = ({ points, closeStroke = false }) => {
   const bodyPart = new Graphics();
@@ -46,6 +46,14 @@ const init = ({ image }) => {
 
   // Make full screen
   // app.renderer.resize(window.innerWidth, window.innerHeight);
+
+  const style = new TextStyle({
+    fill: "white",
+    stroke: "white",
+    fontSize: 16,
+  });
+  const pixiText = new Text("PixiJS", style);
+  app.stage.addChild(pixiText);
 
   // Add canvas to page
   document.body.appendChild(app.view);

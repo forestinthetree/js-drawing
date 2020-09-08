@@ -6,7 +6,7 @@ import { BODY_PART_POINTS } from "../drawing/constants";
 import poseExample from "../data/poseExample";
 import poseExample2 from "../data/poseExample2";
 
-const { Path, Point, Group } = paper;
+const { Path, Point, Group, PointText } = paper;
 
 const createBodyPart = ({ name, points, closeStroke = false, style }) => {
   const bodyPart = new Path({
@@ -52,6 +52,13 @@ const init = ({ image }) => {
   document.body.appendChild(canvas);
 
   paper.setup(canvas);
+
+  new PointText({
+    point: [0, 16],
+    content: "PaperJS",
+    fillColor: "white",
+    fontSize: 16,
+  });
 };
 
 const initBody = ({ name: bodyName, body }) => {
