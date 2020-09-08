@@ -1,8 +1,45 @@
 /*global paper:true */
 import poseToBody from "../drawing/pose-to-body";
 
+import { BODY_PART_POINTS } from "../drawing/constants";
+
 import poseExample from "../data/poseExample";
 import poseExample2 from "../data/poseExample2";
+
+const { Path, Point, Group } = paper;
+
+const createBodyPart = ({ name, points, closeStroke = false, style }) => {
+  const bodyPart = new Path({
+    name,
+    segments: points,
+    closed: closeStroke,
+    style,
+  });
+
+  return bodyPart;
+};
+
+const createBody = ({ body }) => {
+  const style = {
+    strokeWidth: 4,
+    strokeColor: "#fff",
+    strokeJoin: "round",
+    strokeCap: "round",
+  };
+
+  return Object.keys(BODY_PART_POINTS).map((name) => {
+    const { points, ...otherArgs } = BODY_PART_POINTS[name];
+    return createBodyPart({
+      name,
+      points: points.map((bodyPartName) => {
+        const { x, y } = body[bodyPartName];
+        return new Point(x, y);
+      }),
+      style,
+      ...otherArgs,
+    });
+  });
+};
 
 const init = ({ canvas, image }) => {
   const canvasSize = {
@@ -15,71 +52,11 @@ const init = ({ canvas, image }) => {
 };
 
 const initBody = ({ name: bodyName, body }) => {
-  const lineStyle = {
-    strokeWidth: 4,
-    strokeColor: "#fff",
-    strokeJoin: "round",
-    strokeCap: "round",
-  };
+  const bodyParts = createBody({ body });
 
-  const makeLimb = (name, bodyParts) => {
-    return new paper.Path({
-      name: name,
-      segments: bodyParts,
-      style: lineStyle,
-    });
-  };
-
-  const headPart = new paper.Path({
-    name: "head",
-    segments: [body.neck, body.leftEar, body.foreHead, body.rightEar],
-    closed: true,
-    style: lineStyle,
-  });
-
-  const torsoPart = new paper.Path({
-    name: "torso",
-    segments: [
-      body.leftShoulder,
-      body.rightShoulder,
-      body.rightHip,
-      body.leftHip,
-    ],
-    closed: true,
-    style: lineStyle,
-  });
-
-  const leftArmPart = makeLimb("leftArm", [
-    body.leftShoulder,
-    body.leftElbow,
-    body.leftWrist,
-  ]);
-  const rightArmPart = makeLimb("rightArm", [
-    body.rightShoulder,
-    body.rightElbow,
-    body.rightWrist,
-  ]);
-  const leftLegPart = makeLimb("leftLeg", [
-    body.leftHip,
-    body.leftKnee,
-    body.leftAnkle,
-  ]);
-  const rightLegPart = makeLimb("rightLeg", [
-    body.rightHip,
-    body.rightKnee,
-    body.rightAnkle,
-  ]);
-
-  new paper.Group({
+  new Group({
     name: bodyName,
-    children: [
-      headPart,
-      torsoPart,
-      leftArmPart,
-      rightArmPart,
-      leftLegPart,
-      rightLegPart,
-    ],
+    children: bodyParts,
   });
 };
 

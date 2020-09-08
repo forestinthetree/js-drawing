@@ -1,6 +1,7 @@
 /*global PIXI:true */
 
 import poseToBody from "../drawing/pose-to-body";
+import { BODY_PART_POINTS } from "../drawing/constants";
 
 import poseExample from "../data/poseExample";
 import poseExample2 from "../data/poseExample2";
@@ -16,31 +17,8 @@ const createBodyPart = ({ points, closeStroke = false }) => {
   return bodyPart;
 };
 
-const bodyPartCreateArgs = {
-  head: {
-    points: ["neck", "leftEar", "foreHead", "rightEar"],
-    closeStroke: true,
-  },
-  torso: {
-    points: ["leftShoulder", "rightShoulder", "rightHip", "leftHip"],
-    closeStroke: true,
-  },
-  leftArm: {
-    points: ["leftShoulder", "leftElbow", "leftWrist"],
-  },
-  rightArm: {
-    points: ["rightShoulder", "rightElbow", "rightWrist"],
-  },
-  leftLeg: {
-    points: ["leftHip", "leftKnee", "leftAnkle"],
-  },
-  rightLeg: {
-    points: ["rightHip", "rightKnee", "rightAnkle"],
-  },
-};
-
 const createBody = ({ app, body }) => {
-  Object.values(bodyPartCreateArgs).forEach(({ points, ...otherArgs }) => {
+  Object.values(BODY_PART_POINTS).forEach(({ points, ...otherArgs }) => {
     const bodyPart = createBodyPart({
       points: points.map((bodyPartName) => {
         const { x, y } = body[bodyPartName];
