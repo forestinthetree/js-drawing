@@ -55,7 +55,7 @@ const init = ({ image }) => {
 
   new PointText({
     point: [0, 16],
-    content: "PaperJS",
+    content: "Paper.js",
     fillColor: "white",
     fontSize: 16,
   });
