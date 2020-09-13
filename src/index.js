@@ -17,6 +17,8 @@ function main() {
     require("./pixijs/draw");
   } else if (lib === "ptsjs") {
     require("./ptsjs/draw");
+  } else if (lib === "twojs") {
+    require("./twojs/draw");
   } else {
     redirectToHomeLink();
   }
