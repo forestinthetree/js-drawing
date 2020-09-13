@@ -15,6 +15,8 @@ function main() {
     require("./paperjs/draw");
   } else if (lib === "pixijs") {
     require("./pixijs/draw");
+  } else if (lib === "ptsjs") {
+    require("./ptsjs/draw");
   } else {
     redirectToHomeLink();
   }
