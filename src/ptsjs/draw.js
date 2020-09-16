@@ -41,7 +41,7 @@ const init = ({ image }) => {
   document.body.appendChild(canvas);
 
   const space = new CanvasSpace(canvas);
-  space.setup({ bgcolor: "#000", resize: true, retina: true });
+  space.setup({ bgcolor: "#000", retina: true });
 
   const form = space.getForm();
 
