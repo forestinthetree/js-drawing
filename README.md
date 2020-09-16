@@ -1,15 +1,17 @@
-# Canvas library comparison
+# JavaScript drawing library comparison
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/07155b67-c06d-48b0-9408-eac9a0310929/deploy-status)](https://app.netlify.com/sites/canvas-lib-comparison/deploys)
 
-An exploration of different canvas libraries.
+An exploration of different JavaScript drawing libraries.
 
 The comparison contains:
 
 - [Paper.js](http://paperjs.org/)
 - [PixiJS](https://www.pixijs.com/)
+- [Pts.js](https://ptsjs.org/)
+- [Two.js](https://two.js.org/)
 
-Deployed to https://canvas-lib-comparison.netlify.app/
+Deployed to https://js-drawing.netlify.app/
 
 ## Development
 
