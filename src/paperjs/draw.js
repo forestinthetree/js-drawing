@@ -6,7 +6,7 @@ import { BODY_PART_POINTS } from "../drawing/constants";
 import poseExample from "../data/poseExample";
 import poseExample2 from "../data/poseExample2";
 
-const { Path, Point, Group, PointText } = paper;
+const { Path, Point, PointText } = paper;
 
 const createBodyPart = ({ name, points, closeStroke = false, style }) => {
   const bodyPart = new Path({
@@ -61,23 +61,14 @@ const init = ({ image }) => {
   });
 };
 
-const initBody = ({ name: bodyName, body }) => {
-  const bodyParts = createBody({ body });
-
-  new Group({
-    name: bodyName,
-    children: bodyParts,
-  });
-};
+const initBody = ({ name: bodyName, body }) => {};
 
 document.addEventListener("DOMContentLoaded", function () {
   init({ image: poseExample.image });
-  initBody({
-    name: "body1",
+  createBody({
     body: poseToBody({ pose: poseExample.poses[0] }),
   });
-  initBody({
-    name: "body2",
+  createBody({
     body: poseToBody({ pose: poseExample2.poses[0] }),
   });
 });
