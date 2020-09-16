@@ -38,9 +38,7 @@ const init = ({ image }) => {
     height,
   }).appendTo(document.body);
 
-  // Black background
-  const background = two.makeRectangle(width / 2, height / 2, width, height);
-  background.fill = "#000";
+  two.renderer.domElement.style.background = "black";
 
   // Centers text by default
   two.makeText("TwoJS", 26, 16, {
