@@ -61,8 +61,6 @@ const init = ({ image }) => {
   });
 };
 
-const initBody = ({ name: bodyName, body }) => {};
-
 document.addEventListener("DOMContentLoaded", function () {
   init({ image: poseExample.image });
   createBody({
