@@ -8,7 +8,7 @@ import poseExample2 from "../data/poseExample2";
 
 import { createUpdateGenerator } from "../data/create-update-generator";
 
-const { Polygon, CanvasSpace, Pt } = Pts;
+const { Polygon, CanvasSpace, Pt, Triangle, Rectangle } = Pts;
 
 const getBodyParts = (body) => {
   const bodyParts = {};
@@ -32,11 +32,36 @@ const initUpdate = ({ space, generator }) => {
   generator.start();
 
   const form = space.getForm();
-  space.add((time, ftime) => {
-    const bodyParts = getBodyParts(generator.value);
-    Object.values(bodyParts).forEach((bodyPart) => {
-      form.stroke("#fff", 4, "round", "round").fill("white").polygons(bodyPart);
-    });
+  let isPlaying = true;
+  space.add({
+    animate: (time, ftime) => {
+      const bodyParts = getBodyParts(generator.value);
+      Object.values(bodyParts).forEach((bodyPart) => {
+        form
+          .stroke("#fff", 4, "round", "round")
+          .fill("white")
+          .polygons(bodyPart);
+      });
+
+      if (isPlaying) {
+        const playIcon = Triangle.fromCenter(new Pt(25, 45), 10).rotate2D(33);
+        form.fill("#fff").polygon(playIcon);
+      } else {
+        const stopIcon = Rectangle.fromCenter(new Pt(17, 35), 17);
+        form.fill("#fff").rect(stopIcon);
+      }
+    },
+    action: (type) => {
+      if (type === "up") {
+        isPlaying = !isPlaying;
+
+        if (isPlaying) {
+          generator.start();
+        } else {
+          generator.stop();
+        }
+      }
+    },
   });
 };
 
