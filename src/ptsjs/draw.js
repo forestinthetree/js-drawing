@@ -6,27 +6,36 @@ import { BODY_PART_POINTS } from "../drawing/constants";
 import poseExample from "../data/poseExample";
 import poseExample2 from "../data/poseExample2";
 
+import { createUpdateGenerator } from "../data/create-update-generator";
+
 const { Polygon, CanvasSpace, Pt } = Pts;
 
-const createBodyPart = ({ space, points, closeStroke = false, style }) => {
-  const form = space.getForm();
+const getBodyParts = (body) => {
+  const bodyParts = {};
+  Object.keys(BODY_PART_POINTS).forEach((name) => {
+    const { points: pointNames, closeStroke } = BODY_PART_POINTS[name];
 
-  space.add((time, ftime) => {
-    const bodyPart = Polygon.lines(points, closeStroke);
-    form.stroke("#fff", 4, "round", "round").fill("white").polygons(bodyPart);
+    // Create body part
+    const bodyPartPoints = pointNames.map((bodyPartName) => {
+      const { x, y } = body[bodyPartName];
+      return new Pt(x, y);
+    });
+
+    bodyParts[name] = Polygon.lines(bodyPartPoints, closeStroke);
   });
+
+  return bodyParts;
 };
 
-const createBody = ({ space, body }) => {
-  return Object.keys(BODY_PART_POINTS).map((name) => {
-    const { points, ...otherArgs } = BODY_PART_POINTS[name];
-    return createBodyPart({
-      space,
-      points: points.map((bodyPartName) => {
-        const { x, y } = body[bodyPartName];
-        return new Pt(x, y);
-      }),
-      ...otherArgs,
+const initUpdate = ({ space, generator }) => {
+  space.clear();
+  generator.start();
+
+  const form = space.getForm();
+  space.add((time, ftime) => {
+    const bodyParts = getBodyParts(generator.value);
+    Object.values(bodyParts).forEach((bodyPart) => {
+      form.stroke("#fff", 4, "round", "round").fill("white").polygons(bodyPart);
     });
   });
 };
@@ -56,12 +65,21 @@ const init = ({ image }) => {
 
 document.addEventListener("DOMContentLoaded", function () {
   const space = init({ image: poseExample.image });
-  createBody({
+
+  initUpdate({
     space,
-    body: poseToBody({ pose: poseExample.poses[0] }),
+    generator: createUpdateGenerator({
+      body: poseToBody({ pose: poseExample.poses[0] }),
+      interval: 100,
+      delta: 10,
+    }),
   });
-  createBody({
+  initUpdate({
     space,
-    body: poseToBody({ pose: poseExample2.poses[0] }),
+    generator: createUpdateGenerator({
+      body: poseToBody({ pose: poseExample2.poses[0] }),
+      interval: 100,
+      delta: 10,
+    }),
   });
 });
