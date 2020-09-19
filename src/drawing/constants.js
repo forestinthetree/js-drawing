@@ -9,14 +9,18 @@ export const BODY_PART_POINTS = {
   },
   leftArm: {
     points: ["leftShoulder", "leftElbow", "leftWrist"],
+    closeStroke: false,
   },
   rightArm: {
     points: ["rightShoulder", "rightElbow", "rightWrist"],
+    closeStroke: false,
   },
   leftLeg: {
     points: ["leftHip", "leftKnee", "leftAnkle"],
+    closeStroke: false,
   },
   rightLeg: {
     points: ["rightHip", "rightKnee", "rightAnkle"],
+    closeStroke: false,
   },
 };
