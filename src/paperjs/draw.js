@@ -1,7 +1,7 @@
 /*global paper:true */
 import poseToBody from "../drawing/pose-to-body";
 
-import { BODY_PART_POINTS } from "../drawing/constants";
+import { BODY_PART_GROUPS } from "../drawing/constants";
 
 import poseExample from "../data/poseExample";
 import poseExample2 from "../data/poseExample2";
@@ -27,11 +27,11 @@ const createBody = ({ body }) => {
     strokeCap: "round",
   };
 
-  return Object.keys(BODY_PART_POINTS).map((name) => {
-    const { points, ...otherArgs } = BODY_PART_POINTS[name];
+  return Object.keys(BODY_PART_GROUPS).map((name) => {
+    const { pointNames, ...otherArgs } = BODY_PART_GROUPS[name];
     return createBodyPart({
       name,
-      points: points.map((bodyPartName) => {
+      points: pointNames.map((bodyPartName) => {
         const { x, y } = body[bodyPartName];
         return new Point(x, y);
       }),

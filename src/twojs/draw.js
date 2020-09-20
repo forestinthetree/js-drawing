@@ -1,7 +1,7 @@
 /*global Two:true */
 import poseToBody from "../drawing/pose-to-body";
 
-import { BODY_PART_POINTS } from "../drawing/constants";
+import { BODY_PART_GROUPS } from "../drawing/constants";
 
 import poseExample from "../data/poseExample";
 import poseExample2 from "../data/poseExample2";
@@ -16,11 +16,11 @@ const createBodyPart = ({ two, points, closeStroke = false, style }) => {
 };
 
 const createBody = ({ two, body }) => {
-  Object.keys(BODY_PART_POINTS).map((name) => {
-    const { points, ...otherArgs } = BODY_PART_POINTS[name];
+  Object.keys(BODY_PART_GROUPS).map((name) => {
+    const { pointNames, ...otherArgs } = BODY_PART_GROUPS[name];
     return createBodyPart({
       two,
-      points: points
+      points: pointNames
         .map((bodyPartName) => {
           const { x, y } = body[bodyPartName];
           return [x, y];

@@ -1,26 +1,26 @@
-export const BODY_PART_POINTS = {
+export const BODY_PART_GROUPS = {
   head: {
-    points: ["neck", "leftEar", "foreHead", "rightEar"],
+    pointNames: ["neck", "leftEar", "foreHead", "rightEar"],
     closeStroke: true,
   },
   torso: {
-    points: ["leftShoulder", "rightShoulder", "rightHip", "leftHip"],
+    pointNames: ["leftShoulder", "rightShoulder", "rightHip", "leftHip"],
     closeStroke: true,
   },
   leftArm: {
-    points: ["leftShoulder", "leftElbow", "leftWrist"],
+    pointNames: ["leftShoulder", "leftElbow", "leftWrist"],
     closeStroke: false,
   },
   rightArm: {
-    points: ["rightShoulder", "rightElbow", "rightWrist"],
+    pointNames: ["rightShoulder", "rightElbow", "rightWrist"],
     closeStroke: false,
   },
   leftLeg: {
-    points: ["leftHip", "leftKnee", "leftAnkle"],
+    pointNames: ["leftHip", "leftKnee", "leftAnkle"],
     closeStroke: false,
   },
   rightLeg: {
-    points: ["rightHip", "rightKnee", "rightAnkle"],
+    pointNames: ["rightHip", "rightKnee", "rightAnkle"],
     closeStroke: false,
   },
 };

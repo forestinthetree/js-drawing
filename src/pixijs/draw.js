@@ -1,7 +1,7 @@
 /*global PIXI:true */
 
 import poseToBody from "../drawing/pose-to-body";
-import { BODY_PART_POINTS } from "../drawing/constants";
+import { BODY_PART_GROUPS } from "../drawing/constants";
 
 import poseExample from "../data/poseExample";
 import poseExample2 from "../data/poseExample2";
@@ -18,9 +18,9 @@ const createBodyPart = ({ points, closeStroke = false }) => {
 };
 
 const createBody = ({ app, body }) => {
-  Object.values(BODY_PART_POINTS).forEach(({ points, ...otherArgs }) => {
+  Object.values(BODY_PART_GROUPS).forEach(({ pointNames, ...otherArgs }) => {
     const bodyPart = createBodyPart({
-      points: points.map((bodyPartName) => {
+      points: pointNames.map((bodyPartName) => {
         const { x, y } = body[bodyPartName];
         return new Point(x, y);
       }),

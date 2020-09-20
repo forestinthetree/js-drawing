@@ -1,7 +1,7 @@
 /*global Pts:true */
 import poseToBody from "../drawing/pose-to-body";
 
-import { BODY_PART_POINTS } from "../drawing/constants";
+import { BODY_PART_GROUPS } from "../drawing/constants";
 
 import poseExample from "../data/poseExample";
 import poseExample2 from "../data/poseExample2";
@@ -12,8 +12,8 @@ const { Polygon, CanvasSpace, Pt, Triangle, Rectangle } = Pts;
 
 const getBodyParts = (body) => {
   const bodyParts = {};
-  Object.keys(BODY_PART_POINTS).forEach((name) => {
-    const { points: pointNames, closeStroke } = BODY_PART_POINTS[name];
+  Object.keys(BODY_PART_GROUPS).forEach((name) => {
+    const { pointNames, closeStroke } = BODY_PART_GROUPS[name];
 
     // Create body part
     const bodyPartPoints = pointNames.map((bodyPartName) => {
