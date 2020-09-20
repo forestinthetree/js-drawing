@@ -70,6 +70,7 @@ const init = ({ image }) => {
   const canvas = document.createElement("canvas");
   canvas.width = width;
   canvas.height = height;
+  canvas.style.cursor = "pointer";
 
   // Add canvas to page
   document.body.appendChild(canvas);
