@@ -32,18 +32,23 @@ const initUpdate = ({ space, generator }) => {
   generator.start();
 
   const form = space.getForm();
-  let isPlaying = true;
-  space.add({
-    animate: (time, ftime) => {
-      const bodyParts = getBodyParts(generator.value);
-      Object.values(bodyParts).forEach((bodyPart) => {
-        form
-          .stroke("#fff", 4, "round", "round")
-          .fill("white")
-          .polygons(bodyPart);
-      });
+  space.add(() => {
+    const bodyParts = getBodyParts(generator.value);
+    Object.values(bodyParts).forEach((bodyPart) => {
+      form.stroke("#fff", 4, "round", "round").fill("white").polygons(bodyPart);
+    });
+  });
+};
 
-      if (isPlaying) {
+const createPlayControls = ({ space, generators }) => {
+  const state = {
+    isPlaying: true,
+  };
+  const form = space.getForm();
+
+  space.add({
+    animate: () => {
+      if (state.isPlaying) {
         const playIcon = Triangle.fromCenter(new Pt(25, 45), 10).rotate2D(33);
         form.fill("#fff").polygon(playIcon);
       } else {
@@ -53,16 +58,18 @@ const initUpdate = ({ space, generator }) => {
     },
     action: (type) => {
       if (type === "up") {
-        isPlaying = !isPlaying;
+        state.isPlaying = !state.isPlaying;
 
-        if (isPlaying) {
-          generator.start();
+        if (state.isPlaying) {
+          generators.forEach((generator) => generator.start());
         } else {
-          generator.stop();
+          generators.forEach((generator) => generator.stop());
         }
       }
     },
   });
+
+  return state;
 };
 
 const init = ({ image }) => {
@@ -92,20 +99,24 @@ const init = ({ image }) => {
 document.addEventListener("DOMContentLoaded", function () {
   const space = init({ image: poseExample.image });
 
+  const pose1Generator = createUpdateGenerator({
+    body: poseToBody({ pose: poseExample.poses[0] }),
+    interval: 100,
+    delta: 10,
+  });
+  const pose2Generator = createUpdateGenerator({
+    body: poseToBody({ pose: poseExample2.poses[0] }),
+    interval: 100,
+    delta: 10,
+  });
+  createPlayControls({ space, generators: [pose1Generator, pose2Generator] });
+
   initUpdate({
     space,
-    generator: createUpdateGenerator({
-      body: poseToBody({ pose: poseExample.poses[0] }),
-      interval: 100,
-      delta: 10,
-    }),
+    generator: pose1Generator,
   });
   initUpdate({
     space,
-    generator: createUpdateGenerator({
-      body: poseToBody({ pose: poseExample2.poses[0] }),
-      interval: 100,
-      delta: 10,
-    }),
+    generator: pose2Generator,
   });
 });
