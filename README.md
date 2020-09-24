@@ -34,3 +34,13 @@ Deployed to https://js-drawing.netlify.app/
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), however it aims to use the libraries in their most native form, so they are included in `index.html` from a CDN, and the drawing code is imported outside of React rendering.
 
 Create React App is used only as a simple way to get it building in a modern JavaScript environment.
+
+## Storybook
+
+To run [storybook](https://storybook.js.org/):
+
+    npm run storybook
+
+To build storybook:
+
+    npm run build-storybook
