@@ -1,10 +1,7 @@
 /*global Pts:true */
-const { CanvasSpace, SVGSpace, Pt } = Pts;
+import { RENDERER_TYPES } from "./constants";
 
-export const RENDERER_TYPES = {
-  canvas: "canvas",
-  svg: "svg",
-};
+const { CanvasSpace, SVGSpace, Pt } = Pts;
 
 export const init = ({ image, type = RENDERER_TYPES.canvas }) => {
   const { width, height } = image;
