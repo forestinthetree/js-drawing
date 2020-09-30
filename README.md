@@ -12,6 +12,7 @@ The comparison contains:
 - [Two.js](https://two.js.org/)
 
 Deployed to https://js-drawing.netlify.app/
+Storybook exploration at https://js-drawing.netlify.app/storybook
 
 ## Development
 
@@ -44,3 +45,5 @@ To run [storybook](https://storybook.js.org/):
 To build storybook:
 
     npm run build-storybook
+
+This is deployed to https://js-drawing.netlify.app/storybook
