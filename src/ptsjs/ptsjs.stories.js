@@ -11,7 +11,7 @@ import { RENDERER_TYPES } from "./constants";
 import { radiusControl, sizeControl } from "../stories/utils/controls";
 
 export default {
-  title: "Pts.js/Basic shapes",
+  title: "Pts.js/1. Basic shapes",
   component: Scaffold,
   decorators: [withKnobs, withPreview],
   argTypes: {
