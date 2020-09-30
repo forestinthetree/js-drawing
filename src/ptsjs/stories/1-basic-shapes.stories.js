@@ -1,7 +1,7 @@
-/*global Pts:true */
 import React from "react";
 import { withPreview } from "storybook-addon-preview";
 import { withKnobs } from "@storybook/addon-knobs";
+import { Circle, Rectangle, Pt } from "pts";
 
 import { createDrawStory } from "../../stories/utils/create-draw-story";
 import { radiusControl, sizeControl } from "../../stories/utils/controls";
@@ -43,7 +43,6 @@ export const DrawRectangle = createDrawStory({
       current: { fill, size },
     },
   }) {
-    const { Rectangle, Pt } = Pts;
     const { x, y } = space.center;
 
     form.fill(fill).rect(Rectangle.fromCenter(new Pt(x, y), size));
@@ -65,7 +64,6 @@ export const DrawRectangleAsPolygon = createDrawStory({
       current: { fill, size },
     },
   }) {
-    const { Rectangle, Pt } = Pts;
     const { x, y } = space.center;
 
     const polygon = Rectangle.polygon(Rectangle.fromCenter(new Pt(x, y), size));
@@ -88,7 +86,6 @@ export const DrawCircle = createDrawStory({
       current: { fill, radius },
     },
   }) {
-    const { Circle, Pt } = Pts;
     const { x, y } = space.center;
 
     form.fill(fill).circle(Circle.fromCenter(new Pt(x, y), radius));

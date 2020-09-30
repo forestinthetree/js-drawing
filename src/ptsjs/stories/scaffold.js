@@ -1,9 +1,7 @@
-/*global Pts:true */
 import React, { useEffect, useRef, useState } from "react";
+import { CanvasSpace, SVGSpace } from "pts";
 
 import { RENDERER_TYPES } from "../constants";
-
-const { CanvasSpace, SVGSpace } = Pts;
 
 const createCanvas = ({ ref, width, height, style = {} }) => {
   return <canvas ref={ref} width={width} height={height} style={style} />;
