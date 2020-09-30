@@ -3,12 +3,11 @@ import React from "react";
 import { withPreview } from "storybook-addon-preview";
 import { withKnobs } from "@storybook/addon-knobs";
 
+import { createDrawStory } from "../../stories/utils/create-draw-story";
+import { radiusControl, sizeControl } from "../../stories/utils/controls";
+
 import { Scaffold } from "./scaffold";
-
-import { createDrawStory } from "../stories/utils/create-draw-story";
-
-import { RENDERER_TYPES } from "./constants";
-import { radiusControl, sizeControl } from "../stories/utils/controls";
+import { RENDERER_TYPES } from "../constants";
 
 export default {
   title: "Pts.js/1. Basic shapes",

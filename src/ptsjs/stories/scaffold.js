@@ -1,7 +1,7 @@
 /*global Pts:true */
 import React, { useEffect, useRef, useState } from "react";
 
-import { RENDERER_TYPES } from "./constants";
+import { RENDERER_TYPES } from "../constants";
 
 const { CanvasSpace, SVGSpace } = Pts;
 
